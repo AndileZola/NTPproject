@@ -1,0 +1,63 @@
+﻿@model IEnumerable<NTPproject.Calculator>
+
+<div class="col-md-12 row">
+    @foreach (var calc in Model)
+    {
+    <div class="col-md-3">
+        <div class="card" style="background:#dcddde">
+            <center><img src="~/images/@calc.ImagePath" class="card-img-top" alt="..." width="100" height="200"></center>
+            <div class="card-body" style="margin:2%">
+                <center><h5 class="card-title"><strong style="text-transform: uppercase"><a href="#">@calc.CalculatorName</a></strong></h5></center>
+                <table style="width:100%">
+                    <tr>
+                        <th colspan="2">
+                            <hr style="margin-top:0px !important" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th><strong>Model</strong></th>
+                        <td style="text-align:right">@calc.Model</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td style="text-align:right">R @calc.Price</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seller</strong></td>
+                        <td style="text-align:right">@calc.Seller.Firstname @calc.Seller.Lastname</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Listed</strong></td>
+                        <td style="text-align:right">@calc.CreateDate.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                </table>
+                <hr style="margin-top:0px !important" />
+                <div>                 
+                    @Html.ActionLink("BUY", "Buy", new { id = calc.CalculatorId }, new { @class = "btn btn-primary col-md-12", @style = "color:white" })
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    }
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#closeForm").click(function () {
+            $("#dataForm").hide();
+            $("#openFormDiv").show();
+        });
+        $("#openForm").click(function () {
+            $("#dataForm").show();
+        });
+        $("#submitForm").click(function () {
+            $("#submittedData").show();
+            $("#dataForm").hide();
+        });
+        $("#formEdit").click(function () {
+            $("#submittedData").hide();
+            $("#dataForm").show();
+        });
+    });
+</script>
